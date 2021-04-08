@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>pokemon</h1>
+        <h1>PokeApp</h1>
       </header>
     </div>
   );
