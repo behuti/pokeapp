@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchBerry } from "./../redux/berry/berryActions";
 
-function BerryContainer({ berry, fetchBerry }) {
+function BerryContainer({ berryData, fetchBerry }) {
 	const [berryTerm, setBerryTerm] = useState("");
 
 	return (
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	fetchBerry: () => dispatch(fetchBerry()),
+	fetchBerry: (berryTerm) => dispatch(fetchBerry(berryTerm)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BerryContainer);

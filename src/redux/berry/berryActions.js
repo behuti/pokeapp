@@ -1,4 +1,4 @@
-import { axios } from "axios";
+import axios from "axios";
 import { FETCH_BERRY_ERROR, FETCH_BERRY_SUCCESS, FETCH_BERRY_REQUEST } from "./berryTypes";
 import { BASE_URL } from "./../../lib/api";
 
@@ -16,12 +16,12 @@ const fetchBerryErrror = (error) => ({
 	payload: error,
 });
 
-export const fetchBerry = (berry) => {
+export const fetchBerry = (berryTerm) => {
 	return (dispatch) => {
 		dispatch(fetchBerryRequest());
 
 		axios
-			.get(`${BASE_URL}/berry/${berry}`)
+			.get(`${BASE_URL}/berry/${berryTerm}`)
 			.then((response) => {
 				const berryData = response.data();
 
