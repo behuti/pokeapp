@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { searchBerry } from './../redux/berry/berryActions';
+import { fetchBerry } from "./../redux/berry/berryActions";
 
-function BerryContainer({ berry, searchBerry }) {
+function BerryContainer({ berry, fetchBerry }) {
+	const [berryTerm, setBerryTerm] = useState("");
+
 	return (
 		<div>
 			<h2>Berries</h2>
-			<button>Search berry</button>
+			<input type="text" value={berryTerm} onChange={(e) => setBerryTerm(e.target.value)} />
+			<button onClick={() => fetchBerry(berryTerm)}>Search berry</button>
 		</div>
 	);
 }
 
 const mapStateToProps = (state) => ({
-	berry: state.berry.berry,
+	berryData: state.berry.berryData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	searchBerry: () => dispatch(searchBerry()),
+	fetchBerry: () => dispatch(fetchBerry()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BerryContainer);

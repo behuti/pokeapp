@@ -1,6 +1,34 @@
-import { SEARCH_POKEMON } from "./pokemonTypes";
+import axios from "axios";
+import { FETCH_POKEMON_REQUEST, FETCH_POKEMON_ERROR, FETCH_POKEMON_SUCCESS } from "./pokemonTypes";
+import { BASE_URL } from './../../lib/api';
 
-export const searchPokemon = (pokemonName = "") => ({
-	type: SEARCH_POKEMON,
-	payload: pokemonName,
+const fetchPokemonRequest = () => ({
+	type: FETCH_POKEMON_REQUEST,
 });
+
+const fetchPokemonSuccess = (pokemon) => ({
+	type: FETCH_POKEMON_SUCCESS,
+	payload: pokemon,
+});
+
+const fetchPokemonError = (error) => ({
+	type: FETCH_POKEMON_ERROR,
+	payload: error,
+});
+
+export const fetchPokemon = (pokemonName) => {
+	return (dispatch) => {
+		dispatch(fetchPokemonRequest());
+
+		axios
+			.get(`${BASE_URL}/pokemon/${pokemonName}`)
+			.then((response) => {
+				const pokemon = response.data;
+				dispatch(fetchPokemonSuccess(pokemon));
+			})
+			.catch((err) => {
+				const error = err.message;
+				dispatch(fetchPokemonError(error));
+			});
+	};
+};
