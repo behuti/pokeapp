@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PokemonAvatar from "./PokemonAvatar";
+import PokedexHeader from './PokedexHeader'
 import PokemonSearchForm from "./PokemonSearchForm";
 
 function PokemonContainer({ loading, pokemonData }) {
@@ -12,6 +13,7 @@ function PokemonContainer({ loading, pokemonData }) {
 
     return (
         <>
+            <PokedexHeader></PokedexHeader>
             <PokemonSearchForm/>
             {loading ? (
                 "Loading...."
