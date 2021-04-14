@@ -1,46 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchPokemon } from "./../redux/pokemon/pokemonActions";
-
 import PokemonAvatar from "./PokemonAvatar";
+import PokemonSearchForm from "./PokemonSearchForm";
 
-function PokemonContainer({ loading, pokemon, fetchPokemon, pokemonData }) {
-    // States
-    const [pokeName, setPokeName] = useState("");
+function PokemonContainer({ loading, pokemonData }) {
 
     // Effects
     useEffect(() => {
         pokemonData && console.log(pokemonData);
     }, [pokemonData]);
 
-    return loading ? (
-        "Loading...."
-    ) : (
+    return (
         <>
-            <div>
-                <h2>Pokemon {pokemon}</h2>
-                <input
-                    type="text"
-                    value={pokeName}
-                    onChange={(e) => setPokeName(e.target.value)}
-                />
-                <button onClick={() => fetchPokemon(pokeName)}>
-                    Search pokemon
-                </button>
-                {pokemonData ? <PokemonAvatar data={pokemonData} /> : ""}
-            </div>
+            <PokemonSearchForm/>
+            {loading ? (
+                "Loading...."
+            ) : pokemonData ? (
+                <PokemonAvatar data={pokemonData} />
+            ) : (
+                ""
+            )}
+
         </>
     );
 }
 
 const mapStateToProps = (state) => ({
     loading: state.pokemon.loading,
-    pokemon: state.pokemon.pokemon,
     pokemonData: state.pokemon.pokemonData,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchPokemon: (pokemonName) => dispatch(fetchPokemon(pokemonName)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonContainer);
+export default connect(mapStateToProps, null)(PokemonContainer);
