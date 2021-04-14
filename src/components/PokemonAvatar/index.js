@@ -1,11 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import { StyledPokemonAvatar, StyledPokemonName } from "./Styled";
 import PokemonType from "./components/PokemonType";
 
-const PokemonAvatar = ({ data }) => {
-    const { name, sprites, types } = data;
-
-    console.log(types);
+const PokemonAvatar = ({ loading, pokemonData }) => {
+    
+    const { name, sprites, types } = pokemonData;
 
     return (
         <StyledPokemonAvatar className="pokemon-avatar">
@@ -32,4 +33,9 @@ const PokemonAvatar = ({ data }) => {
     );
 };
 
-export default PokemonAvatar;
+const mapStateToProps = state => ({
+    loading: state.pokemon.loading,
+    pokemonData: state.pokemon.pokemonData
+})
+
+export default connect(mapStateToProps, null)(PokemonAvatar);

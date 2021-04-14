@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 const theme = {
     colors: {
         pokedexRed: "#DE3D2B",
+        pokedexInput: '#32CB66',
         types: {
             bug: "#85940B",
             dark: "#3E2D23",

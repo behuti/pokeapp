@@ -1,4 +1,4 @@
-import { FETCH_POKEMON_REQUEST, FETCH_POKEMON_SUCCESS, FETCH_POKEMON_ERROR } from "./pokemonTypes";
+import { FETCH_POKEMON_REQUEST, FETCH_POKEMON_SUCCESS, FETCH_POKEMON_ERROR, CLEAR_POKEMON_DATA } from "./pokemonTypes";
 
 const initialState = {
 	pokemon: "",
@@ -30,6 +30,14 @@ const pokemonReducer = (state = initialState, action) => {
 				pokemonData: null,
 				error: action.payload,
 			};
+
+		case CLEAR_POKEMON_DATA:
+			return {
+				...state,
+				loading: false,
+				pokemonData: null,
+				error: ""
+			}
 
 		default:
 			return state;

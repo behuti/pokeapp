@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { fetchPokemon } from "../../redux/pokemon/pokemonActions";
+import {
+    clearPokemonData,
+    fetchPokemon,
+} from "../../redux/pokemon/pokemonActions";
 import Theme from "../../styles/theme";
 
-import { StyledForm, StyledButton } from "./Styled";
+import { StyledForm, ClearButton, SearchButton } from "./Styled";
 
-// assets
-import PokeBorder from './../../assets/separator.svg'
-
-const PokemonSearchForm = ({ fetchPokemon }) => {
+const PokemonSearchForm = ({ fetchPokemon, clearPokemonData }) => {
+    // State
     const [pokeName, setPokeName] = useState("");
 
     return (
         <Theme>
-            
             <StyledForm className="pokemon-search">
-                
                 <h1>What Pokemon are you looking for?</h1>
                 <input
                     className="pokemon-search__input"
@@ -23,13 +22,23 @@ const PokemonSearchForm = ({ fetchPokemon }) => {
                     value={pokeName}
                     onChange={(e) => setPokeName(e.target.value)}
                 />
-                <StyledButton
+                <br />
+                <ClearButton
+                    onClick={() => {
+                        clearPokemonData();
+                        setPokeName("");
+                    }}
+                >
+                    Clear
+                </ClearButton>
+
+                <SearchButton
                     onClick={() => {
                         fetchPokemon(pokeName);
                     }}
                 >
-                    Search pokemon
-                </StyledButton>
+                    Search
+                </SearchButton>
             </StyledForm>
         </Theme>
     );
@@ -37,6 +46,7 @@ const PokemonSearchForm = ({ fetchPokemon }) => {
 
 const mapDispatchToProps = (dispatch) => ({
     fetchPokemon: (pokemonName) => dispatch(fetchPokemon(pokemonName)),
+    clearPokemonData: () => dispatch(clearPokemonData()),
 });
 
 export default connect(null, mapDispatchToProps)(PokemonSearchForm);

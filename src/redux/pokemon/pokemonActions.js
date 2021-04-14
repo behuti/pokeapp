@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_POKEMON_REQUEST, FETCH_POKEMON_ERROR, FETCH_POKEMON_SUCCESS } from "./pokemonTypes";
+import { FETCH_POKEMON_REQUEST, FETCH_POKEMON_ERROR, FETCH_POKEMON_SUCCESS, CLEAR_POKEMON_DATA } from "./pokemonTypes";
 import { BASE_URL } from './../../lib/api';
 
 const fetchPokemonRequest = () => ({
@@ -15,6 +15,10 @@ const fetchPokemonError = (error) => ({
 	type: FETCH_POKEMON_ERROR,
 	payload: error,
 });
+
+export const clearPokemonData = () => ({
+	type: CLEAR_POKEMON_DATA
+})
 
 export const fetchPokemon = (pokemonName) => {
 	return (dispatch) => {

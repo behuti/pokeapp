@@ -70,11 +70,4 @@ export const Header = styled.div`
         left: 0;
         bottom: 0;
     }
-
-    .pokemon-search__input {
-        background-color: ${props => props.theme.colors.pokedexRed};
-        padding: 5px 4px;
-        border: 3px solid white;
-        color: white;
-    }
 `
