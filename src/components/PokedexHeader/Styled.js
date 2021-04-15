@@ -4,6 +4,8 @@ export const Header = styled.div`
     position: relative;
     height: 130px;
     margin-bottom: 40px;
+    max-width: 100%;
+    overflow: hidden;
 
     .pokemon-search__blueIndicator {
         position: absolute;
