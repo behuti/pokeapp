@@ -3,7 +3,7 @@ import { FETCH_POKEMON_REQUEST, FETCH_POKEMON_SUCCESS, FETCH_POKEMON_ERROR, CLEA
 const initialState = {
 	pokemon: "",
 	loading: false,
-	pokemonData: null,
+	pokemonInfo: null,
 	error: "",
 };
 
@@ -19,7 +19,7 @@ const pokemonReducer = (state = initialState, action) => {
 			return {
 				...state,
 				loading: false,
-				pokemonData: action.payload,
+				pokemonInfo: action.payload,
 				error: "",
 			};
 
@@ -27,7 +27,7 @@ const pokemonReducer = (state = initialState, action) => {
 			return {
 				...state,
 				loading: false,
-				pokemonData: null,
+				pokemonInfo: null,
 				error: action.payload,
 			};
 
@@ -35,7 +35,7 @@ const pokemonReducer = (state = initialState, action) => {
 			return {
 				...state,
 				loading: false,
-				pokemonData: null,
+				pokemonInfo: null,
 				error: ""
 			}
 

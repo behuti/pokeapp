@@ -1,27 +1,16 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import PokemonAvatar from "./PokemonAvatar";
 import PokedexHeader from "./PokedexHeader";
 import PokemonSearchForm from "./PokemonSearchForm";
 
-function PokemonContainer({ loading, pokemonData }) {
-    // Effects
-    useEffect(() => {
-        pokemonData && console.log(pokemonData);
-    }, [pokemonData]);
-
+function PokemonContainer() {
     return (
         <>
             <PokedexHeader />
+            <PokemonAvatar />
             <PokemonSearchForm />
-            {pokemonData ? <PokemonAvatar /> : ""}
         </>
     );
 }
 
-const mapStateToProps = (state) => ({
-    loading: state.pokemon.loading,
-    pokemonData: state.pokemon.pokemonData,
-});
-
-export default connect(mapStateToProps, null)(PokemonContainer);
+export default PokemonContainer;

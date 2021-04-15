@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {lighten} from 'polished';
 
 export const StyledForm = styled.div`
     text-align: center;
@@ -25,9 +26,9 @@ export const StyledForm = styled.div`
 
 export const ClearButton = styled.button`
     background-color: #f10105;
-    color: white;
+    color: ${lighten(.45, '#f10105')};
     border: 0;
-    box-shadow: 6px 0 black, -6px 0 black, 0 6px black, 0 -6px black;
+    box-shadow: 3px 0 black, -3px 0 black, 0 3px black, 0 -3px black;
     font-size: 13px;
     padding: 4px 32px;
     margin: 6px 16px;
@@ -36,9 +37,9 @@ export const ClearButton = styled.button`
 
 export const SearchButton = styled.button`
     background-color: #7abcf5;
-    color: white;
+    color: ${lighten(.25, '#7abcf5')};;
     border: 0;
-    box-shadow: 6px 0 black, -6px 0 black, 0 6px black, 0 -6px black;
+    box-shadow: 3px 0 black, -3px 0 black, 0 3px black, 0 -3px black;
     font-size: 13px;
     padding: 4px 32px;
     margin: 6px 16px;

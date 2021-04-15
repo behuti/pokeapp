@@ -34,7 +34,7 @@ const PokemonSearchForm = ({ fetchPokemon, clearPokemonData }) => {
 
                 <SearchButton
                     onClick={() => {
-                        fetchPokemon(pokeName);
+                        pokeName.length > 0 && fetchPokemon(pokeName);
                     }}
                 >
                     Search

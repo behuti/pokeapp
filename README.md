@@ -5,3 +5,7 @@ This App is a learning project to learn how to use Redux, Jest Testing and API c
 ### Resources
 
 - PokéApi
+- Polished.js
+- Redux
+- react-redux
+- axios

@@ -1,38 +1,56 @@
+import { BASE_URL } from "./../../lib/api";
 import axios from "axios";
-import { FETCH_POKEMON_REQUEST, FETCH_POKEMON_ERROR, FETCH_POKEMON_SUCCESS, CLEAR_POKEMON_DATA } from "./pokemonTypes";
-import { BASE_URL } from './../../lib/api';
+import {
+    FETCH_POKEMON_REQUEST,
+    FETCH_POKEMON_ERROR,
+    FETCH_POKEMON_SUCCESS,
+    CLEAR_POKEMON_DATA,
+} from "./pokemonTypes";
 
 const fetchPokemonRequest = () => ({
-	type: FETCH_POKEMON_REQUEST,
+    type: FETCH_POKEMON_REQUEST,
 });
 
 const fetchPokemonSuccess = (pokemon) => ({
-	type: FETCH_POKEMON_SUCCESS,
-	payload: pokemon,
+    type: FETCH_POKEMON_SUCCESS,
+    payload: pokemon,
 });
 
 const fetchPokemonError = (error) => ({
-	type: FETCH_POKEMON_ERROR,
-	payload: error,
+    type: FETCH_POKEMON_ERROR,
+    payload: error,
 });
 
-export const clearPokemonData = () => ({
-	type: CLEAR_POKEMON_DATA
-})
-
 export const fetchPokemon = (pokemonName) => {
-	return (dispatch) => {
-		dispatch(fetchPokemonRequest());
+    return (dispatch) => {
+        dispatch(fetchPokemonRequest());
 
-		axios
-			.get(`${BASE_URL}/pokemon/${pokemonName}`)
-			.then((response) => {
-				const pokemon = response.data;
-				dispatch(fetchPokemonSuccess(pokemon));
-			})
-			.catch((err) => {
-				const error = err.message;
-				dispatch(fetchPokemonError(error));
-			});
-	};
+        const pokemonData = `${BASE_URL}/pokemon/${pokemonName}`;
+        //This second url allow us to fetch the descriptions of the pokemon
+        const pokemonDesc = `${BASE_URL}/pokemon-species/${pokemonName}`;
+
+        const getPokemonData = axios.get(pokemonData);
+        const getPokemonDesc = axios.get(pokemonDesc);
+
+        axios
+            .all([getPokemonData, getPokemonDesc])
+            .then(
+                axios.spread((...allData) => {
+                    const pokemonData = allData[0].data;
+                    const pokemonDesc = allData[1].data;
+
+                    //This is the final object that contains all the pokemon info
+                    const pokemon = { pokemonData, pokemonDesc };
+                    dispatch(fetchPokemonSuccess(pokemon));
+                })
+            )
+            .catch((err) => {
+                const error = err.message;
+                dispatch(fetchPokemonError(error));
+            });
+    };
 };
+
+export const clearPokemonData = () => ({
+    type: CLEAR_POKEMON_DATA,
+});
