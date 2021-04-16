@@ -23,6 +23,24 @@ export const StyledPokemonScreen = styled.div`
     .pokemon-avatar__picture {
         width: 150px;
         margin-top: 25px;
+
+        &--error {
+            width: 150px;
+            display: block;
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            & + .pokemon-avatar__picture {
+                margin-top: 60px;
+            }
+
+            &:after {
+                content: 'ZZzzZZzz...';
+                color: white;
+            }
+        }
     }
     .pokemon-screen__indicator {
         position: absolute;

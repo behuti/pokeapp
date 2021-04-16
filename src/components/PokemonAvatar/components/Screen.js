@@ -4,9 +4,10 @@ import Theme from "../../../styles/theme";
 import { StyledPokemonScreen, StyledPokemonName } from "./../Styled";
 import Speaker from "./Speaker";
 import spoken from "./../../../../node_modules/spoken/build/spoken";
+import ErrorImage from "./../../../assets/snorlax.webp";
+import Loader from './../../../assets/loader.gif'
 
-const Screen = ({ loading, pokemonInfo }) => {
-
+const Screen = ({ loading, pokemonInfo, error }) => {
     // Read description if pokemon exists, COMMENT THIS TO NOT GET NUTS
     useEffect(() => {
         if (pokemonInfo) {
@@ -37,6 +38,28 @@ const Screen = ({ loading, pokemonInfo }) => {
                         : ""
                 }
             >
+                {loading && (
+                    <>
+                    <img
+                            className="pokemon-avatar__picture "
+                            src={Loader}
+                            alt={'spinning pokeball'}
+                        />
+                    </>
+                )}
+                {error && (
+                    <>
+                        <span className='pokemon-avatar__picture--error'></span>
+                        <img
+                            className="pokemon-avatar__picture "
+                            src={ErrorImage}
+                            alt={error}
+                        />
+                        <StyledPokemonName className="pokemon-avatar__title">
+                            {error}
+                        </StyledPokemonName>
+                    </>
+                )}
                 {pokemonInfo ? (
                     <>
                         <img
@@ -67,6 +90,7 @@ const Screen = ({ loading, pokemonInfo }) => {
 const mapStateToProps = (state) => ({
     loading: state.pokemon.loading,
     pokemonInfo: state.pokemon.pokemonInfo,
+    error: state.pokemon.error,
 });
 
 export default connect(mapStateToProps, null)(Screen);

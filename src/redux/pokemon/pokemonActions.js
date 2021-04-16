@@ -2,8 +2,9 @@ import { BASE_URL } from "./../../lib/api";
 import axios from "axios";
 import {
     FETCH_POKEMON_REQUEST,
-    FETCH_POKEMON_ERROR,
     FETCH_POKEMON_SUCCESS,
+    FETCH_POKEMON_ERROR,
+    SET_POKEMON_ERROR,
     CLEAR_POKEMON_DATA,
 } from "./pokemonTypes";
 
@@ -46,11 +47,20 @@ export const fetchPokemon = (pokemonName) => {
             )
             .catch((err) => {
                 const error = err.message;
-                dispatch(fetchPokemonError(error));
+                if (error === "Request failed with status code 404") {
+                    dispatch(fetchPokemonError("Is this a new pokemon?"));
+                } else {
+                    dispatch(fetchPokemonError(error));
+                }
             });
     };
 };
 
 export const clearPokemonData = () => ({
     type: CLEAR_POKEMON_DATA,
+});
+
+export const setPokemonError = (errorMessage) => ({
+    type: SET_POKEMON_ERROR,
+    payload: errorMessage,
 });
