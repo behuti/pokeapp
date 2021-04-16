@@ -16,6 +16,5 @@ This App is a learning project to learn how to use Redux, Jest Testing and API c
 
 ### Todos
 
-- Validate Fields before hiting the API
 - Create suite of tests using JEST
 - Blink blue light while the TTS is running
