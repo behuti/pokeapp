@@ -5,7 +5,7 @@ import { StyledPokemonScreen, StyledPokemonName } from "./../Styled";
 import Speaker from "./Speaker";
 import spoken from "./../../../../node_modules/spoken/build/spoken";
 import ErrorImage from "./../../../assets/snorlax.webp";
-import Loader from './../../../assets/loader.gif'
+import Loader from "./../../../assets/loader.gif";
 
 const Screen = ({ loading, pokemonInfo, error }) => {
     // Read description if pokemon exists, COMMENT THIS TO NOT GET NUTS
@@ -15,13 +15,12 @@ const Screen = ({ loading, pokemonInfo, error }) => {
                 (entrie) => entrie.language.name === "en"
             );
             const finalDescription = descriptions[0].flavor_text.replace(
-                /(\r\n|\n|\r)/gm,
+                /(\r\n|\n|\r)/gm, //This deletes the line breaks for the screen reader
                 " "
             );
 
             pokemonInfo.pokemonData.name.length > 0 &&
-                spoken
-                    .say(pokemonInfo.pokemonData.name)
+                spoken.say(pokemonInfo.pokemonData.name)
                     .then(() => spoken.say(finalDescription));
         }
     }, [pokemonInfo]);
@@ -40,16 +39,16 @@ const Screen = ({ loading, pokemonInfo, error }) => {
             >
                 {loading && (
                     <>
-                    <img
+                        <img
                             className="pokemon-avatar__picture "
                             src={Loader}
-                            alt={'spinning pokeball'}
+                            alt={"spinning pokeball"}
                         />
                     </>
                 )}
                 {error && (
                     <>
-                        <span className='pokemon-avatar__picture--error'></span>
+                        <span className="pokemon-avatar__picture--error"></span>
                         <img
                             className="pokemon-avatar__picture "
                             src={ErrorImage}
