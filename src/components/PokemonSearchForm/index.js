@@ -42,13 +42,14 @@ const PokemonSearchForm = ({
     return (
         <Theme>
             <StyledForm className="pokemon-search">
-                <h1>What Pokemon are you looking for?</h1>
+                <h1 className="pokemon-search--title">What Pokemon are you looking for?</h1>
                 <form onSubmit={(e) => onSubmitHandler(e)}>
                     <input
                         className="pokemon-search__input"
                         placeholder="Pokemon Name or id"
                         type="text"
-                        name="pokemon"
+                        id="pokemonName"
+                        name="pokemonName"
                         value={pokeName}
                         onKeyPress={(e) => {
                             if (e.key === "Enter") {
@@ -62,6 +63,7 @@ const PokemonSearchForm = ({
                     />
                     <br />
                     <ClearButton
+                        id='clearButton'
                         onClick={(e) => {
                             e.preventDefault();
                             clearPokemonData();
