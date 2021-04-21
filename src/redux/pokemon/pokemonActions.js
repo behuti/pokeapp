@@ -8,16 +8,16 @@ import {
     CLEAR_POKEMON_DATA,
 } from "./pokemonTypes";
 
-const fetchPokemonRequest = () => ({
+export const fetchPokemonRequest = () => ({
     type: FETCH_POKEMON_REQUEST,
 });
 
-const fetchPokemonSuccess = (pokemon) => ({
+export const fetchPokemonSuccess = (pokemon) => ({
     type: FETCH_POKEMON_SUCCESS,
     payload: pokemon,
 });
 
-const fetchPokemonError = (error) => ({
+export const fetchPokemonError = (error) => ({
     type: FETCH_POKEMON_ERROR,
     payload: error,
 });

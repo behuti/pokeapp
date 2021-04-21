@@ -73,7 +73,7 @@ const PokemonSearchForm = ({
                         Clear
                     </ClearButton>
 
-                    <SearchButton type="submit" onClick={onSubmitHandler}>
+                    <SearchButton id='submitButton' type="submit" onClick={onSubmitHandler}>
                         Search
                     </SearchButton>
                 </form>

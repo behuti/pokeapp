@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form Snapshot should match snapshot 1`] = `
+<div
+  className="sc-bdvvaa frsVvv pokemon-search"
+>
+  <h1
+    className="pokemon-search--title"
+  >
+    What Pokemon are you looking for?
+  </h1>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      className="pokemon-search__input"
+      id="pokemonName"
+      name="pokemonName"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Pokemon Name or id"
+      type="text"
+      value=""
+    />
+    <br />
+    <button
+      className="sc-gsDJrp jamQIq"
+      id="clearButton"
+      onClick={[Function]}
+    >
+      Clear
+    </button>
+    <button
+      className="sc-dkPtyc bspwyx"
+      id="submitButton"
+      onClick={[Function]}
+      type="submit"
+    >
+      Search
+    </button>
+  </form>
+</div>
+`;
