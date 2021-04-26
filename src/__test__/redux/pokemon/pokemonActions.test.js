@@ -1,14 +1,30 @@
 import PokemonMock from "../../../__mocks__/PokemonMock";
 import {
+    fetchPokemon,
     fetchPokemonRequest,
     fetchPokemonSuccess,
     fetchPokemonError,
-    fetchPokemon,
-    clearPokemonData,
     setPokemonError,
+    clearPokemonData,
 } from "./../../../redux/pokemon/pokemonActions";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import moxios from "moxios";
+
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
 
 describe("Pokemon Actions", () => {
+    beforeEach(() => {
+        moxios.install();
+    });
+
+    afterEach(() => {
+        moxios.uninstall();
+    });
+
+    //TODO: Test fetchPokemon action
+
     test("fetchPokemonRequest Action", () => {
         const expected = {
             type: "FETCH_POKEMON_REQUEST",
